@@ -42,7 +42,7 @@ taxonomies = [{ name = "tags", feed = true }]
 #[languages.fr]
 #description = "Blog de Yassine Zouggari ou zoug sur l'informatique et d'autres sujets vaguement liés, en français et en anglais."
 
-[languages.en]
+#[languages.en]
 description = "Yassine Zouggari or zoug's blog on computer science and loosely related subjects, in French and English."
 
 [extra]
@@ -72,7 +72,7 @@ fix_contrast_dark = true
 # Keep in mind that it also changes the style of headings.
 #
 bundled_fonts = true
-#
+
 # Use emoji as a favicon.
 # Only one emoji is being rendered, everything else is truncated.
 #
@@ -166,14 +166,17 @@ links = [
 	#	{ url = "@/demo/index.md", name = "Demo" },
 	#	{ url = "@/mods/index.md", name = "Mods" }
 	#] },
-	{ url = "https://infosec.exchange/@zoug/", name = "Mastodon" },
+	{ url = "#blogposts", name = "Blog" },
 ]
 
 [extra.footer]
 # Links used in the footer.
 # Same as the nav ones.
 links = [
-	{ url = "https://infosec.exchange/@zoug/", name = "Mastodon" },
+	{ url = "https://fediring.net/", name = "?" },
+	{ url = "https://fediring.net/previous?host=zoug.fr", name = "Previous" },
+	{ url = "https://fediring.net/random", name = "Random" },
+	{ url = "https://fediring.net/next?host=zoug.fr", name = "Next" },
 ]
 # Social links in the footer.
 # Any URL-encoded SVG can be used as an icon.

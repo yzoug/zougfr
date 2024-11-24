@@ -30,7 +30,7 @@ paginate_by = 10
 
 **Welcome to zoug.fr!**
 
-My name is *Yassine Zouggari*, but you can call me `zoug`. I'm a computer nerd. This is my little corner of the Internet, look around!
+My name is *Yassine Zouggari*, but you can call me `zoug`. This is my little corner of the Internet, look around!
 
 # About me
 
