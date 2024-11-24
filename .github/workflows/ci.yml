@@ -1,0 +1,40 @@
+name: Deployer
+run-name: Build and deploy zoug.fr
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Deployer
+    steps:
+      - name: Checkout the current branch
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Create .ssh folder for runner
+        run: mkdir ~/.ssh && chmod 700 ~/.ssh
+
+      - name: Copy private key to file in runner
+        env:
+          PRIVKEY: ${{ secrets.CI_SSH_PRIVKEY }}
+        run: echo "$PRIVKEY" > ~/.ssh/ci-github && chmod 500 ~/.ssh/ci-github
+
+      - name: Scan the host key
+        env:
+          HOST: ${{ secrets.CI_SSH_HOSTNAME }}
+        run: ssh-keyscan $HOST > ~/.ssh/known_hosts
+
+      - name: Install Zola
+        run: sudo snap install zola --edge
+
+      - name: Build the website
+        run: zola build
+
+      - name: Deploy the website
+        env:
+          USER: ${{ secrets.CI_SSH_USER }}
+          HOST: ${{ secrets.CI_SSH_HOSTNAME }}
+        run: rsync -avh --exclude '.ssh' -e "ssh -i ~/.ssh/ci-github" public/ $USER@$HOST:~ --delete
