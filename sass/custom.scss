@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  animation: fade 2s linear forwards;
   svg {
     width: 100%;
     height: 100%;
     .white {
-      animation-name: neonblink;
-      animation-duration: 10s;
-      animation-iteration-count: infinite;
+      animation: neonblink 8s linear infinite;
     }
   }
 }
@@ -17,50 +17,47 @@
     all: unset;
     width: 30%;
     height: 30%;
-    animation-name: wiggle;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: wiggle 1s linear alternate infinite;
 }
 
 @keyframes neonblink {
-  0% {
-    opacity: 100%;
+  0%,40% {
+    opacity: 1;
   }
-  40% {
-    opacity: 100%;
+  41% {
+    opacity: 0;
   }
-  45% {
-    opacity: 0%;
+  42%,68% {
+    opacity: 1;
   }
-  50% {
-    opacity: 100%;
+  69% {
+    opacity: 0;
   }
-  90% {
-    opacity: 100%;
-  }
-  95% {
-    opacity: 0%;
+  70%,98% {
+    opacity: 1;
   }
   100% {
-    opacity: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 @keyframes wiggle {
-  0% {
+  from {
     transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-1deg);
   }
   50% {
-    transform: rotate(0deg);
+    transform: rotate(-1deg);
   }
-  75% {
-    transform: rotate(1deg);
-  }
-  100% {
+  to {
     transform: rotate(0deg);
   }
 }
