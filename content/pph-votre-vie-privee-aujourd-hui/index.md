@@ -11,3 +11,11 @@ Je vous propose donc ici de découvrir mon travail et espère qu'il sera utile �
 
 [Ouvrir le PDF](pph.pdf)
 
+**Mise à jour**: j'ai eu le plaisir de participer à l'émission Twitch de Mediapart, [Abonnez-vous](https://www.mediapart.fr/studio/videos/emissions/abonnez-vous), en temps que membre de leur service technique. Beaucoup de sujets ont été abordés, la discussion finale est très riche : j'espère trouver un jour le temps d'extraire les moments intéressants et revenir dessus plus en profondeur (avec des graphiques, ce sera sûrement beaucoup plus digeste).
+
+Les invités choisissent en général un article qu'ils ou elles souhaitent lire et discuter pendant l'émission, et pour ma part, c'est cet article sur la vie privée que j'ai choisi de mettre en avant. Vous pouvez regarder l'émission complète sur YouTube :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XSXatW5RL10?si=-pJFBrp72Otj-QIE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Un grand merci à Ana qui m'a mis le plus à l'aise possible, autant avant l'émission que pendant, merci à Jade d'avoir géré la modération pendant ce live et pour être passée à la fin, et bien sûr merci à toutes celles et à tous ceux ayant posé des questions ou réagi dans le tchat pendant la diffusion.
+
