@@ -39,7 +39,7 @@ I'm passionate about **free and open-source software** and **privacy**. My code 
 
 I am from Morocco and currently live in France. Some of my blogposts are in French, others in English.
 
-Come say hi on [Mastodon](https://infosec.exchange/@zoug), and check out my [GitHub](https://github.com/yzoug) profile! You can also send me an email on `contact@` (the domain you're on).
+Come say hi on [Mastodon](https://infosec.exchange/@zoug), and check out my [GitHub](https://github.com/yzoug) profile! You can also send me an email on `contact@` (the domain you're on), here is my [my PGP key](pgp-pubkey.asc).
 
 Thank you for visiting my website 🥰
 
