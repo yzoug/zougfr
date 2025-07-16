@@ -37,4 +37,4 @@ jobs:
         env:
           USER: ${{ secrets.CI_SSH_USER }}
           HOST: ${{ secrets.CI_SSH_HOSTNAME }}
-        run: rsync -avh --exclude '.ssh' -e "ssh -i ~/.ssh/ci-github" public/ $USER@$HOST:~ --delete
+        run: rsync -avh --exclude '.ssh' -e "ssh -i ~/.ssh/ci-github" public/ $USER@$HOST:~/zoug.fr --delete
