@@ -1,6 +1,9 @@
 name: Deployer
 run-name: Build and deploy zoug.fr
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -22,7 +25,6 @@ jobs:
         run: zola build
 
   deploy:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: Deployer
     steps:
