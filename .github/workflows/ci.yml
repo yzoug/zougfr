@@ -1,19 +1,31 @@
 name: Deployer
 run-name: Build and deploy zoug.fr
 on:
-  push:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: Deployer
     steps:
-      - name: Checkout the current branch
+      - name: Checkout the current branch, with the Duckquill theme submodule
         uses: actions/checkout@v3
         with:
           submodules: recursive
 
+      - name: Install Zola
+        run: sudo snap install zola --edge
+
+      - name: Build the website
+        run: zola build
+
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: Deployer
+    steps:
       - name: Create .ssh folder for runner
         run: mkdir ~/.ssh && chmod 700 ~/.ssh
 
@@ -26,12 +38,6 @@ jobs:
         env:
           HOST: ${{ secrets.CI_SSH_HOSTNAME }}
         run: ssh-keyscan $HOST > ~/.ssh/known_hosts
-
-      - name: Install Zola
-        run: sudo snap install zola --edge
-
-      - name: Build the website
-        run: zola build
 
       - name: Deploy the website
         env:
