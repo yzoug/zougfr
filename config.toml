@@ -33,6 +33,7 @@ highlight_themes_css = [
 ]
 smart_punctuation = true
 bottom_footnotes = true
+github_alerts = true
 
 #[search]
 #index_format = "fuse_json"
@@ -107,7 +108,7 @@ show_read_time = true
 # Uses https://shareopenly.org.
 show_share_button = true
 # Whether to show the backlinks button for linked articles in the article's quick actions
-show_backlinks = true
+#show_backlinks = true
 # Whether to enable the KaTeX library for rendering LaTeX.
 # Note: This will make your page significantly heavier.
 # Instead, consider enabling it per page/section.
@@ -121,11 +122,11 @@ toc = true
 # Whether to render inline table of contents at the top of all pages,
 # in addition to floating quick navigation buttons.
 # Can be set per page/section.
-toc_inline = true
+#toc_inline = true
 #
 # Whether to use numbered (ordered) list for table of contents.
 # Can be set per page/section.
-# toc_ordered = true
+#toc_ordered = true
 #
 # Whether to use Content Security Policy.
 # Keep in mind that although this can potentially increase security,
@@ -166,7 +167,7 @@ links = [
 	#	{ url = "@/demo/index.md", name = "Demo" },
 	#	{ url = "@/mods/index.md", name = "Mods" }
 	#] },
-	{ url = "#blogposts", name = "Blog" },
+	{ url = "#blogposts", name = "Blogposts" },
 ]
 
 [extra.footer]
