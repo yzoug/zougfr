@@ -15,7 +15,7 @@ Je vous propose donc ici de découvrir mon travail et espère qu'il sera utile �
 
 Les invités choisissent en général un article qu'ils ou elles souhaitent lire et discuter pendant l'émission, et pour ma part, c'est cet article sur la vie privée que j'ai choisi de mettre en avant. Vous pouvez regarder l'émission complète sur YouTube :
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XSXatW5RL10?si=-pJFBrp72Otj-QIE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{ youtube(id="XSXatW5RL10") }}
 
 Un grand merci à Ana qui m'a mis le plus à l'aise possible, autant avant l'émission que pendant, merci à Jade d'avoir géré la modération pendant ce live et pour être passée à la fin, et bien sûr merci à toutes celles et à tous ceux ayant posé des questions ou réagi dans le tchat pendant la diffusion.
 

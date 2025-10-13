@@ -1,15 +1,13 @@
 +++
 title = "Secure VNC setup: full LXDE desktop on your VPS"
 date = 2016-07-12
-+++
-
-# Archived content
-
+[extra]
+archive = """
 This article was written years ago (`2016-07-12`). The content could still be relevant today, but I'd no longer advice on doing this (with age, you don't trust the cloud/yourself as much: I don't want my private files on a server if they're not encrypted). It's a cool read nonetheless.
 
 This article was [shared on Reddit here](https://www.reddit.com/r/selfhosted/comments/5cngl8/small_article_i_wrote_to_help_install_a_full_lxde/) back then, and people rightfully said to me that I shouldn't do this, altough, not for these reasons 🙃.
-
----
+"""
++++
 
 You can very easily setup a secure VNC connection between a cheap Virtual Private Server (VPS) and any computer you happen to have at your disposal.
 
