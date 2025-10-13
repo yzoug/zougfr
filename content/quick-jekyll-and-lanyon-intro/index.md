@@ -1,13 +1,9 @@
 +++
 title = "Quick Jekyll and Lanyon intro"
 date = 2016-07-09
+[extra]
+archive = "This article was written years ago (`2016-07-09`). You're probably better off reading the up-to-date quickstart for Jekyll instead, but it's a cool read nonetheless."
 +++
-
-# Archived content
-
-This article was written years ago (`2016-07-09`). You're probably better off reading the up-to-date quickstart for Jekyll instead, but it's a cool read nonetheless.
-
----
 
 Maybe you've heard of [Jekyll](http://jekyllrb.com/). It's an open-source static site generator that lets you write content, create a template, build and obtain static webpages ready to be served by your favorite webserver.
 

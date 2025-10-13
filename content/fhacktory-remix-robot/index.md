@@ -1,15 +1,13 @@
 +++
 title = "Découverte de Snips (fhacktory: RemixRobot)"
 date = 2018-10-28
-+++
-
-# Contenu archivé
-
+[extra]
+archive = """
 Cet article a été écrit il y a des années (`2018-10-28`). Depuis, Snips a été racheté par Sonos (un fabricant d'enceintes) et la plateforme a été fermée. 😠.
 
 Il vous est donc impossible de suivre ce tuto mais aujourd'hui, d'autres assistants vocaux offrant les mêmes garanties existent, utilisables notamment via [HomeAssistant](https://www.home-assistant.io/). Si vous voulez découvrir cet univers, je vous conseille [cette vidéo de NetworkChuck](https://www.youtube.com/watch?v=k02P5nghmfs) (en anglais) en intro, sympathique à regarder quel que soit votre niveau technique.
-
----
+"""
++++
 
 J'ai participé il y a quelques semaines au *fhacktory*, un petit évènement très sympathique organisé par mes anciens collègues de chez [Rtone](https://rtone.fr/), à Lyon. Le principe, former des équipes avec les autres participants, laisser les organisateurs nous noyer dans une marée de Legos, objets connectés, Rapsberry Pis et gadgets en tout genre, avec pour objectif de trouver une idée de projet et de l'exécuter en 24h non-stop.
 

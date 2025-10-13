@@ -1,17 +1,17 @@
 +++
 title = "Introduction to the world of ricing"
 date = 2016-12-20
-+++
-
-# Archived content
-
+[extra]
+archive = """
 This article was written years ago (`2016-12-20`). My dotfiles, which serve as the basis for this setup, have greatly changed, as you'll see if you go to [the GitHub repo](https://github.com/yzoug/dotfiles). I now use Wayland instead of Xorg, `sway` instead of `bspwm` as my window manager, and many other changes. 
 
 Some packages I install with the AUR are now available in the repos (like the Source Code Pro nerd font, `ttf-sourcecodepro-nerd`), and the article is outdated on some things. It's an interesting read nonetheless.
 
 A note on the word *ricing* used here. This article was [shared on Reddit](https://www.reddit.com/r/linux/comments/5ke33n/introduction_to_the_world_of_ricing/) and /u/Nwallins informed me that the roots of the term are very negative (read [his or her comment here](https://www.reddit.com/r/linux/comments/5ke33n/comment/dbnus7p/)). I wouldn't use this term today, however for the sake of authenticity I kept the article as-is.
-
----
+"""
+toc = true
+toc_sidebar = true
++++
 
 Generally Linux users like to configure their setup to feel and look like they want it to, and you won't spend long in the community before stumbling into **ricing**, i.e. customizing what your distribution looks like. You'll find plenty of examples in places like [r/unixporn](https://www.reddit.com/r/unixporn).
 
