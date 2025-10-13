@@ -24,10 +24,6 @@ jobs:
       - name: Build the website
         run: zola build
 
-  deploy:
-    runs-on: ubuntu-latest
-    environment: Deployer
-    steps:
       - name: Create .ssh folder for runner
         run: mkdir ~/.ssh && chmod 700 ~/.ssh
 
