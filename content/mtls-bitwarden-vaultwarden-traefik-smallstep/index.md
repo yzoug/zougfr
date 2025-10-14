@@ -1,11 +1,12 @@
 +++
 title = "Mutual TLS (mTLS) in-depth: step-by-step case study feat. Bitwarden, Vaultwarden, Traefik and Smallstep"
-date = 2025-10-10
+date = 2025-10-14
 description = "Learn how to use `step` to create your own certificate authority, and make your clients authenticate to a reverse proxy (`Traefik`) in order to access a sensitive application (`Vaultwarden` / `Bitwarden`)."
 [extra]
 hot = true
 toc = true
 toc_sidebar = true
+banner = "banner.webp"
 #[extra.comments]
 #id = 113085798299150158
 +++
