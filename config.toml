@@ -88,9 +88,9 @@ source_url = "https://github.com/yzoug/zougfr"
 # Additional CSS styles; expects them to be in the "./static/" directory.
 # If you are using Sass it will be generated there automatically.
 #
-styles = [
-  "custom.css"
-]
+#styles = [
+#  "custom.css"
+#]
 #
 # Additional JavaScript scripts; expects them to be in the "./static/" directory.
 #
