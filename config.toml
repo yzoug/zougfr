@@ -26,8 +26,6 @@ author = "Yassine Zouggari"
 # BCP 47: https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
 default_language = "en"
 
-taxonomies = [{ name = "tags", feed = true }]
-
 [markdown]
 highlight_code = true
 highlight_theme = "css"
