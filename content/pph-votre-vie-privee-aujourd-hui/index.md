@@ -9,7 +9,9 @@ Dans le cadre de mes études à l'INSA Lyon, j'ai donc choisi ce thème pour mon
 
 Je vous propose donc ici de découvrir mon travail et espère qu'il sera utile à quelqu'un:
 
-[Ouvrir le PDF](pph.pdf)
+<object data='pph.pdf' type="application/pdf" width="100%" height="1100">
+  <a href="pph.pdf">Ouvrir le PDF</a>
+</object>
 
 **Mise à jour**: j'ai eu le plaisir de participer à l'émission Twitch de Mediapart, [Abonnez-vous](https://www.mediapart.fr/studio/videos/emissions/abonnez-vous), en temps que membre de leur service technique. Beaucoup de sujets ont été abordés, la discussion finale est très riche : j'espère trouver un jour le temps d'extraire les moments intéressants et revenir dessus plus en profondeur (avec des graphiques, ce sera sûrement beaucoup plus digeste).
 

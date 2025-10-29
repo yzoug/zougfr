@@ -138,6 +138,7 @@ csp = [
 	{ directive = "img-src", domains = ["'self'", "https:", "data:"] },
 	{ directive = "media-src", domains = ["'self'", "https:"] },
 	{ directive = "script-src", domains = ["'self'"] },
+	{ directive = "object-src", domains = ["'self'"] },
 	{ directive = "style-src", domains = ["'self'", "'unsafe-inline'"] },
 	{ directive = "frame-src", domains = ["https://player.vimeo.com", "https://www.youtube-nocookie.com", "https://infosec.exchange"] },
 	{ directive = "connect-src", domains = ["https://infosec.exchange"] },
