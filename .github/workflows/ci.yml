@@ -24,7 +24,7 @@ jobs:
           tool: zola@0.21.0
 
       - name: Build the website
-        run: zola build
+        run: zola build --minify
 
       - name: Create .ssh folder for runner
         run: mkdir ~/.ssh && chmod 700 ~/.ssh
