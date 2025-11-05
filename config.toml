@@ -69,6 +69,11 @@ accent_color_dark = "#2acc3d"
 # Ditto but for the dark theme.
 fix_contrast_dark = true
 
+# A blurnail effect is applied by default in the article list, for articles with a banner.
+# Uncomment to disable.
+#
+blurnail = false
+
 # Whether to use fonts bundled with Duckquill instead of system ones.
 # Keep in mind that it also changes the style of headings.
 #
