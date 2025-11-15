@@ -144,10 +144,9 @@ csp = [
 	{ directive = "object-src", domains = ["'self'"] },
 	{ directive = "style-src", domains = ["'self'", "'unsafe-inline'"] },
 	{ directive = "frame-src", domains = ["https://player.vimeo.com", "https://www.youtube-nocookie.com", "https://infosec.exchange"] },
-	{ directive = "connect-src", domains = ["https://infosec.exchange"] },
-	{ directive = "frame-ancestors", domains = ["'none'"] },
+	{ directive = "connect-src", domains = ["https://infosec.exchange", "http://127.0.0.1:3000"] },
 	{ directive = "base-uri", domains = ["'none'"] },
-	{ directive = "form-action", domains = ["'none'"] }
+	{ directive = "form-action", domains = ["'self'"] }
 ]
 # Display outlines around all elements for debugging purposes
 # debug_layout = true
@@ -156,7 +155,7 @@ csp = [
 
 [extra.nav]
 # Whether to automatically hide nav when not hovered or focused
-auto_hide = true
+auto_hide = false
 # Whether to show the Atom/RSS feed button in the nav
 show_feed = true
 # Whether to show the manual theme switcher in the nav
