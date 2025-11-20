@@ -172,7 +172,8 @@ links = [
 	#	{ url = "@/demo/index.md", name = "Demo" },
 	#	{ url = "@/mods/index.md", name = "Mods" }
 	#] },
-	{ url = "/gallery/", name = "Gallery" },
+	{ url = "@/gallery/_index.md", name = "Gallery" },
+	{ url = "@/contact/_index.md", name = "Contact" },
 ]
 
 [extra.footer]
