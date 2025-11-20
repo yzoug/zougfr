@@ -39,10 +39,8 @@ My name is *Yassine Zouggari*, but you can call me `zoug`. This is my little cor
 
 I'm passionate about **free and open-source software** and **privacy**. My code is published under the **GNU GPL** whenever possible. I try to explore as many facets of software development, DIY projects and basically using computers for fun as possible, but I'm particularly interested in **cybersecurity**. I currently work as a DevSecOps engineer.
 
-I am from Morocco and currently live in France. Some of my blogposts are in French, others in English. I also enjoy hiking and cycling: some pictures I took can be found in this website's [gallery](gallery).
+I am from Morocco and currently live in France. I like hiking and cycling: some pictures I took during these activities can be found in the [gallery](@/gallery/_index.md).
 
-Come say hi on [Mastodon](https://infosec.exchange/@zoug), and check out my [GitHub](https://github.com/yzoug) profile! You can also send me an email on `contact@` (the domain you're on), here is [my PGP key](pgp-pubkey.asc).
-
-Thank you for visiting my website 🥰
+Come say hi on [Mastodon](https://infosec.exchange/@zoug), check out my [GitHub](https://github.com/yzoug) profile, and feel free to send me an email through the [contact form](@/contact/_index.md).
 
 # Blogposts
