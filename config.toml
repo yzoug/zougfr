@@ -144,7 +144,7 @@ csp = [
 	{ directive = "object-src", domains = ["'self'"] },
 	{ directive = "style-src", domains = ["'self'", "'unsafe-inline'"] },
 	{ directive = "frame-src", domains = ["https://player.vimeo.com", "https://www.youtube-nocookie.com", "https://infosec.exchange"] },
-	{ directive = "connect-src", domains = ["https://infosec.exchange", "http://127.0.0.1:3000"] },
+	{ directive = "connect-src", domains = ["https://infosec.exchange", "https://api.zoug.top"] },
 	{ directive = "base-uri", domains = ["'none'"] },
 	{ directive = "form-action", domains = ["'self'"] }
 ]
