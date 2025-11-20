@@ -1,0 +1,76 @@
+<script defer src="/pgp-contact.js" type="module"></script>
+
+<div class="form-box">
+<form id="contact-form">
+  <b><label for="reply-to">Your valid e-mail address:</label></b>
+  <input type="email" id="reply-to" class="form-input"/>
+  <p></p>
+  <b><label for="pgp-message">What's on your mind?</label></b>
+  <textarea id="pgp-message" class="form-input"></textarea>
+  <hr>
+  <button type="submit">Submit</button>
+  <blockquote id="contact-form-200" class="markdown-alert-note error-message">
+    <p>Thank you! Your message has been stored on the server.</p>
+  </blockquote>
+  <blockquote id="contact-form-400" class="markdown-alert-warning error-message">
+    <p>Sorry! There's a problem with your message or the supplied email address.</p>
+    <p>Make sure you only use usual characters in the email address, and that your message is not too long, then try sending it again.</p>
+  </blockquote>
+  <blockquote id="contact-form-403" class="markdown-alert-caution error-message">
+    <p>Sorry! You've sent too much requets and are now banned for the time being, or you're not deemed trustworthy by CrowdSec.</p>
+    <p>If you're using Tor, use my <a href="https://zougfriqn4pmip5tsujpzuj4gp4opwjehkkrksacy6iqsifm25tm6byd.onion">onion service</a> instead of the clearnet website.</p>
+  </blockquote>
+  <blockquote id="contact-form-429" class="markdown-alert-caution error-message">
+    <p>Sorry! You're sending too much requests.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+  <blockquote id="contact-form-500" class="markdown-alert-warning error-message">
+    <p>Sorry! An unexpected error occured.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+  <blockquote id="contact-form-error" class="markdown-alert-caution error-message">
+    <p>Sorry! The back-end is probably down for maintenance or (oh my) too much load.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+</form>
+</div>
+
+<p>This form requires you to <strong>verify your email address</strong> (sorry, but otherwise the spam could become too much to handle): a token will be sent to you by email.</p>
+
+<div class="form-box">
+<form id="token-form">
+  <p>Your encrypted message has been saved on the server and is ready to be sent. A token has been sent to the supplied email address.</p>
+  <p>Input your validation token below to confirm your email address. I'll then receive your message.</p>
+  <input type="hidden" id="msg-id" />
+  <b><label for="token">Your validation token:</label></b>
+  <input id="token" class="form-input"/>
+  <hr>
+  <button type="submit">Submit</button>
+  <blockquote id="token-form-200" class="markdown-alert-note error-message">
+    <p>Thank you! Your message has been sent.</p>
+  </blockquote>
+  <blockquote id="token-form-400" class="markdown-alert-warning error-message">
+    <p>Sorry! There's a problem with the supplied token.</p>
+    <p>Make sure you only input the token itself (no spaces or other characters), then try sending it again.</p>
+  </blockquote>
+  <blockquote id="token-form-403" class="markdown-alert-warning error-message">
+    <p>Sorry! You've sent too much requets and are now banned for the time being, or you're not deemed trustworthy by CrowdSec.</p>
+    <p>If you're using Tor, use my <a href="https://zougfriqn4pmip5tsujpzuj4gp4opwjehkkrksacy6iqsifm25tm6byd.onion">onion service</a> instead of the clearnet website.</p>
+  </blockquote>
+  <blockquote id="token-form-404" class="markdown-alert-warning error-message">
+    <p>Sorry! This is not the right token for the supplied message.</p>
+  </blockquote>
+  <blockquote id="token-form-429" class="markdown-alert-caution error-message">
+    <p>Sorry! You're sending too much requests.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+  <blockquote id="token-form-500" class="markdown-alert-warning error-message">
+    <p>Sorry! An unexpected error occured.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+  <blockquote id="token-form-error" class="markdown-alert-caution error-message">
+    <p>Sorry! The back-end is probably down for maintenance or (oh my) too much load.</p>
+    <p>Please wait a bit before trying again.</p>
+  </blockquote>
+</form>
+</div>
