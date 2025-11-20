@@ -1,4 +1,4 @@
-import * as openpgp from './openpgp.min.mjs';
+import * as openpgp from './openpgp.min.js';
 
 // I put my OpenPGP binary key on this path to follow the WKD standard
 // more info: https://github.com/yzoug/zougfr/pull/6
