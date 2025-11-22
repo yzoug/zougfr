@@ -213,7 +213,7 @@ async fn post_pgp_message(Json(payload): Json<Submission>) -> StatusCode {
 fn is_valid_pgp_message(payload: &Submission) -> bool {
     // [...]
     // see the Github repo for the complete source code:
-    // https://github.com/yzoug/world-most-interesting-contact-form
+    // https://github.com/yzoug/pgp-contact
     true
 }
 ```
@@ -256,9 +256,9 @@ But worry not: the changes made are the subject of the next article, where we'll
 
 **Subscribe to my [RSS feed](/rss.xml) and/or follow me [on Mastodon](https://infosec.exchange/@zoug) if you don't want to miss it!**
 
-In the meantime, you can already check out the final version of the code, including what's not covered yet in this blog post: I've put everything in [this GitHub repo](https://github.com/yzoug/world-most-interesting-contact-form). I've also included what's needed to create a Docker image from the Rust backend binary, and an example Docker Compose file to deploy everything.
+In the meantime, you can already check out the final version of the code, including what's not covered yet in this blog post: I've put everything in [this GitHub repo](https://github.com/yzoug/pgp-contact). I've also included what's needed to create a Docker image from the Rust backend binary, and an example Docker Compose file to deploy everything.
 
-⭐ **Want to make my day? You can [star the repo on GitHub!](https://github.com/yzoug/world-most-interesting-contact-form)** ⭐
+⭐ **Want to make my day? You can [star the repo on GitHub!](https://github.com/yzoug/pgp-contact)** ⭐
 
 # Proton Mail and encrypted communications
 
