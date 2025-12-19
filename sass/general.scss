@@ -1,0 +1,9 @@
+#banner-container {
+    mask-image: linear-gradient(
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.9) 70%,
+        rgba(0, 0, 0, 0.6) 90%,
+        rgba(0, 0, 0, 0)
+    );
+    z-index: unset;
+}
