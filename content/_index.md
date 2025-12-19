@@ -33,7 +33,7 @@ styles = ["logo.css"]
 
 **Welcome to zoug.fr!**
 
-My name is *Yassine Zouggari*, but you can call me `zoug`. This is my little corner of the Internet, look around!
+My name is _Yassine Zouggari_, but you can call me `zoug`. This is my little corner of the Internet, look around!
 
 # About me
 
