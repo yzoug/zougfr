@@ -3,7 +3,6 @@ title = "The world's most interesting contact form"
 date = 2025-11-20
 description = "Send an **end-to-end encrypted email** through a contact form, using `OpenPGPjs` to encrypt the message. We'll also code a `Rust` backend, developed using the `Axum` web framework, that will handle the email sending via SMTP."
 [extra]
-hot = true
 toc = true
 toc_sidebar = true
 styles = ["form.css"]
@@ -20,7 +19,7 @@ You can send me an **end-to-end encrypted** email by filling out this form:
 
 # What makes this contact form so interesting?
 
-Okey, maybe calling it *the world's most interesting* contact form is a little overstatement.
+Okey, maybe calling it _the world's most interesting_ contact form is a little overstatement.
 
 This article will first talk about **OpenPGP**, what it is and how it works. We'll use the [**OpenPGPjs** library](https://github.com/openpgpjs/openpgpjs/), a JavaScript implementation of OpenPGP, to encrypt your message for me directly in your web browser.
 
@@ -47,7 +46,7 @@ The way OpenPGP works is by leveraging what's called **public-key cryptography**
 
 To use OpenPGP, you generate what's called a **keypair**: a public and private key linked together. The public key is, as the name implies, **public**: you can widely share it, it is used to **encrypt** messages that can only be decrypted by the corresponding **private** key. And of course, you need to keep your private key **private**: anyone could decrypt messages meant for you with it.
 
-OpenPGP is used in a variety of contexts, e.g. to *cryptographically sign* [contributions to Debian](https://wiki.debian.org/DebianKeyring). These [digital signatures](https://en.wikipedia.org/wiki/Digital_signature) are another use of public keys, but we're not getting into that here.
+OpenPGP is used in a variety of contexts, e.g. to _cryptographically sign_ [contributions to Debian](https://wiki.debian.org/DebianKeyring). These [digital signatures](https://en.wikipedia.org/wiki/Digital_signature) are another use of public keys, but we're not getting into that here.
 
 We'll focus on **email encryption** specifically, one of OpenPGP's most used applications. Since OpenPGP is a standard, a lot of different tools implement it (e.g. `gnupg`). In this article, we want to use the OpenPGP standard **within a web browser**, i.e. the **client-side** for users of our contact form. To do so, we need a JavaScript library (or something that can run on a web browser like [WebAssembly](https://webassembly.org/)), and here we'll use [OpenPGPjs](https://github.com/openpgpjs/openpgpjs/).
 
@@ -112,6 +111,7 @@ contact_form.addEventListener("submit", async event => {
 After submitting the form, the encrypted message is displayed in our web browser's console:
 
 {% crt() %}
+
 ```
 -----BEGIN PGP MESSAGE-----
 
@@ -119,6 +119,7 @@ wV4DF3pgcgpEwCMSAQdAqpyykstftEs2KlH8UlPCaG7bf6vLNOnHKFoDBVHT
 [...]
 -----END PGP MESSAGE-----
 ```
+
 {% end %}
 
 This is the final message we want to send, encrypted using my public key. It's impossible to decipher except with access to the corresponding private key, or by breaking the encryption somehow which is **not considered possible** as of today.
@@ -139,9 +140,9 @@ cargo add serde
 
 ...leaves us with an initialized Rust project and the dependencies added. We'll then go from [Axum's quickstart snippet](https://docs.rs/axum/latest/axum/) and adapt it to our needs, namely:
 
-* Creating a POST route to receive the PGP-encrypted message from the contact form
-* Doing some input validation
-* Sending the PGP-encrypted message through SMTP to my email address
+- Creating a POST route to receive the PGP-encrypted message from the contact form
+- Doing some input validation
+- Sending the PGP-encrypted message through SMTP to my email address
 
 ```rust
 // src/main.rs
@@ -250,7 +251,7 @@ When submitting the form, I receive:
 
 # Protecting our inbox from spam
 
-If you put this form, as coded here, on the open Internet, your inbox will probably soon be *drowning* in spam. So the form at the top of this page is different than the code in the article, to make it a little more robust.
+If you put this form, as coded here, on the open Internet, your inbox will probably soon be _drowning_ in spam. So the form at the top of this page is different than the code in the article, to make it a little more robust.
 
 But worry not: the changes made are the subject of the next article, where we'll talk about the **added anti-spam code** to do email verification, and **Traefik + CrowdSec**, two additionnal pieces of software I'm using for hardening.
 

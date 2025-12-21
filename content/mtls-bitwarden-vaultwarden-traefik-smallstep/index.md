@@ -3,7 +3,6 @@ title = "Mutual TLS (mTLS) in-depth: step-by-step case study feat. Bitwarden, Va
 date = 2025-10-14
 description = "Learn how to use `step` to create your own certificate authority, and make your clients authenticate to a reverse proxy (`Traefik`) in order to access a sensitive application (`Vaultwarden` / `Bitwarden`)."
 [extra]
-hot = true
 toc = true
 toc_sidebar = true
 banner = "banner.webp"
@@ -37,7 +36,7 @@ I use [Vaultwarden](https://github.com/dani-garcia/vaultwarden), because the Bit
 
 I need to access my Vaultwarden data from my phone and computers to keep the passwords synced. For years, my setup was a home "server" (really, a [cheap NUC](https://www.notebookcheck.net/Intel-NUC-Kit-NUC7CJYH-Celeron-J4005-UHD-600-Mini-PC-Review.308466.0.html) that consumes almost no electricity), with Vaultwarden on it, accessible from my home network or through WireGuard for remote access. However, that's a machine used to test stuff, and as a result, it is often down. Also, using WireGuard to remotely access my vault was cumbersome and sometimes not possible. After a while, I got tired of maintaining this, so now, I run Vaultwarden from an online VPS, and **it's exposed on the Internet**.
 
-This is the choice of **convenience**. However, we're talking about the cornerstone of my online security. All my passwords and secrets are in my Vaultwarden server: if someone breaks in somehow, *I'm in deep trouble*.
+This is the choice of **convenience**. However, we're talking about the cornerstone of my online security. All my passwords and secrets are in my Vaultwarden server: if someone breaks in somehow, _I'm in deep trouble_.
 
 One of the steps I took was to try and hide it: dedicated server, dedicated domain, only accessible through an unguessable subdomain, which isn't in DNS records. This way, finding my vault is not easy: malicious scanning bots won't stumble into it by accident. I could still, of course, accidentally expose the domain it's on in a number of ways.
 
@@ -48,7 +47,7 @@ For instance, anyone spying on my Internet connection could see this domain if I
 >
 > When using your browser, if you go to `https://zoug.fr`, you'll ask a DNS server, usually operated by your ISP, to translate that domain to an IP address, say `203.0.113.42`. The DNS request you would send to find that info is usually unencrypted, except if you use an encrypted DNS variant (your two options being DNS-over-HTTPS (`DoH`) or DNS-over-TLS (`DoT`)). So anyone watching the packets going through your Internet connection will see what domain you're trying to access.
 >
-> Then, since you're using HTTPS, your browser will **establish an encrypted tunnel** (actually *two* encrypted tunnels, one for client to server communications, and another, different one for server to client data) with the server at `203.0.113.42`: this process is called a TLS **handshake**. However, the server may have more than one domain associated with it, e.g. maybe `https://example.com` is also served by the same IP address. So the server you're connecting to actually has to know if you're trying to access `zoug.fr` or `example.com`, in order to use the right **TLS certificate** and the corresponding public key to establish the encrypted tunnels (the certificate valid for `zoug.fr` may not be valid for `example.com`).
+> Then, since you're using HTTPS, your browser will **establish an encrypted tunnel** (actually _two_ encrypted tunnels, one for client to server communications, and another, different one for server to client data) with the server at `203.0.113.42`: this process is called a TLS **handshake**. However, the server may have more than one domain associated with it, e.g. maybe `https://example.com` is also served by the same IP address. So the server you're connecting to actually has to know if you're trying to access `zoug.fr` or `example.com`, in order to use the right **TLS certificate** and the corresponding public key to establish the encrypted tunnels (the certificate valid for `zoug.fr` may not be valid for `example.com`).
 >
 > To solve this, the first step of the TLS handshake, called the `Client Hello`, includes an extension called `SNI`. The `SNI` contains the domain we're trying to access. This happens **before** any encryption takes place. So in our scenario, on untrusted networks and only by watching the TLS traffic, people may see not only the IP address, but also **our super secret domain passing through the wire** when I'm using my vault, even though the pages I visit, the actual data I send and receive is encrypted.
 >
@@ -58,7 +57,7 @@ For instance, anyone spying on my Internet connection could see this domain if I
 >
 > If you want to learn more about TLS, look no further than this visual explanation by Michael Driscoll, [The Illustrated TLS 1.3 Connection](https://tls13.xargs.org/): it's a gem. I also quite liked [this video by Practical Networking](https://www.youtube.com/watch?v=ZkL10eoG1PY), if that's your preference.
 
-Anyways, enough about that. Another step I could also take to better protect my vault would be to [have a WAF](https://github.com/owasp-modsecurity/ModSecurity-nginx) (*Web Application Firewall*) between the Internet and this service. Still, the decision of exposing my vault online wasn't sitting right by me.
+Anyways, enough about that. Another step I could also take to better protect my vault would be to [have a WAF](https://github.com/owasp-modsecurity/ModSecurity-nginx) (_Web Application Firewall_) between the Internet and this service. Still, the decision of exposing my vault online wasn't sitting right by me.
 
 ## Enter mTLS
 
@@ -66,11 +65,11 @@ A perfect way to better protect my vault is **mTLS**. There's one thing I can't 
 
 The **m** of **mTLS** stands for **mutual**. Instead of you (i.e. your browser) authenticating the website you're visiting (i.e. making sure only the **zoug.fr** website can access the data you send it, no one else), **mTLS** does the same, but **mutually**, i.e. the website you're visiting **also authenticates the client** (i.e. your browser).
 
-With TLS, that authentication step works by leveraging what we call **certificate authorities**, or CAs for short. These are nothing more than public/private keys, such as the ones we'll generate later in this article, but they are  ✨ *special* ✨ in that they are trusted by your browser (there's [quite a few of them](https://ccadb.my.salesforce-sites.com/mozilla/CACertificatesInFirefoxReport)).
+With TLS, that authentication step works by leveraging what we call **certificate authorities**, or CAs for short. These are nothing more than public/private keys, such as the ones we'll generate later in this article, but they are ✨ _special_ ✨ in that they are trusted by your browser (there's [quite a few of them](https://ccadb.my.salesforce-sites.com/mozilla/CACertificatesInFirefoxReport)).
 
 These trusted CAs supply TLS certificates and **cryptographically sign** them. They have to make sure that when they send a TLS certificate for a domain, the certificate is sent to someone who controls that domain. So when you visit `zoug.fr` and receive a TLS certificate from the server, your browser can verify that one of the trusted CAs it bundles supplied it.
 
-**In theory**, this assures you that you're indeed accessing the website you want to go to, not someone else pretending to be that website to steal your credentials or data. If that verification fails, your browser won't allow you to access that domain, at least not without clearing stating that *your connection is not secure*.
+**In theory**, this assures you that you're indeed accessing the website you want to go to, not someone else pretending to be that website to steal your credentials or data. If that verification fails, your browser won't allow you to access that domain, at least not without clearing stating that _your connection is not secure_.
 
 **mTLS works pretty much the same way**. However, the **mutual** part means that in addition to the server's certificate, **your browser also sends one** (or, in our case, the Bitwarden mobile app sends it). The server does the exact same verification your browser does, i.e. verifies that the TLS certificate the client sent it was indeed signed by a trusted CA.
 
@@ -89,7 +88,9 @@ To generate a root certificate authority called `ZCA`:
 ```cmd
 step certificate create ZCA ca-root.crt ca-root.key --profile=root-ca
 ```
+
 {% crt() %}
+
 ```
 Please enter the password to encrypt the private key:
 <input a strong passphrase here and store it in... your vault of course!>
@@ -97,6 +98,7 @@ Please enter the password to encrypt the private key:
 Your certificate has been saved in ca-root.crt.
 Your private key has been saved in ca-root.key.
 ```
+
 {% end %}
 
 By default, `step` will generate a certificate valid for 10 years, and using [elliptic-curve cryptography](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm). Everything can be fine-tuned, [more info in the manual](https://smallstep.com/docs/step-cli/reference/certificate/create/#options). Using this CA, we can generate a client certificate, valid for a year:
@@ -111,12 +113,13 @@ step certificate create Browser browser.crt browser.key \
 > What I'm doing here is signing the client certificate directly with the root CA, which is not the most secure way of doing it.
 >
 > The root CA certificate is long-lived and very (very) important: if it leaks, you can no longer trust any certificate signed by it. What you usually want to do is generate an intermediate certificate from the root CA (`--profile intermediate-ca`), then only use that certificate to generate leaf certificates.
-> 
+>
 > This way, the root CA can be stored offline and as securely as possible (even using [dedicated hardware](https://en.wikipedia.org/wiki/Hardware_security_module)), and you only need the intermediate CA for all usual operations.
 
 Let's take a closer look at the generated client certificate, using `step certificate inspect browser.crt`:
 
 {% crt() %}
+
 ```
 Certificate:
     [...]
@@ -136,6 +139,7 @@ Certificate:
                 Server Authentication, Client Authentication
             [...]
 ```
+
 {% end %}
 
 We see that the issuer of our certificate is indeed our `ZCA` root CA, and that this certificate's subject only contains its common name (or CN), `Browser` in this case. If this were to be used as a TLS certificate for a webserver, we'd have the domain name in this CN field (e.g. `www.zoug.fr`). We also see that in the `X509v3 extensions` section, `Client Authentication` is an authorized use of this certificate.
@@ -156,6 +160,7 @@ And then, import the resulting `browser.p12` file in the browser:
 That's basically it!
 
 We now have the two necessary pieces for an mTLS connection to take place:
+
 - **the root CA's public key** (contained in its certificate), used by the webserver to verify that the client certificate is indeed authorized
 - **our browser's client certificate**, our only (for now) authorized client, i.e. the certificate supplied by our browser when connecting to our webserver
 

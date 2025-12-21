@@ -3,7 +3,6 @@ title = "Deploy a Tor onion service with Onionspray and Ansible"
 date = 2025-11-04
 description = "Learn more about Tor onion services (or hidden services), how they work, and how to easily deploy one with **Onionspray** and **Ansible**. We'll also show how to generate a vanity Tor address using `mkp224o`, and advertise it via the `Onion-Location` HTTP header."
 [extra]
-hot = true
 toc = true
 toc_sidebar = true
 banner = "banner.webp"
@@ -23,7 +22,7 @@ Feel free to use the table of contents to skip to the section relevant to you. L
 
 ## The Tor network
 
-When browsing the Internet, we leave *traces*. These are collected by various means. A lot can be used to track you, and I mean *a lot*: for example, [the wallpaper you chose on your phone](https://fingerprint.com/blog/how-android-wallpaper-images-threaten-privacy/). The subject of online privacy is vast, and websites like [privacyguides.org](https://www.privacyguides.org/en/basics/why-privacy-matters/) are full of resources to help you understand why you should care, and how to protect yourself.
+When browsing the Internet, we leave _traces_. These are collected by various means. A lot can be used to track you, and I mean _a lot_: for example, [the wallpaper you chose on your phone](https://fingerprint.com/blog/how-android-wallpaper-images-threaten-privacy/). The subject of online privacy is vast, and websites like [privacyguides.org](https://www.privacyguides.org/en/basics/why-privacy-matters/) are full of resources to help you understand why you should care, and how to protect yourself.
 
 I've also written on the subject, in French, [in this article](@/pph-votre-vie-privee-aujourd-hui/index.md). It was a long time ago, but still is a great introduction. <small>I'm pretty proud of it.</small>
 
@@ -54,8 +53,8 @@ There are two main ways to use Tor. One is just to browse the Internet via [Tor 
 
 A sophisticated attacker observing the traffic between:
 
-1) you and your Tor guard node
-2) your Tor exit node and the website you're visiting
+1. you and your Tor guard node
+2. your Tor exit node and the website you're visiting
 
 ...could do **a correlation attack** to try to identify your connection.
 
@@ -72,7 +71,7 @@ An onion service is a webserver, like the ones you're connecting to on the Inter
 
 Essentially, a two-way communication tunnel between Alice and Bob, where neither Alice nor Bob knows where the other is. Pretty nifty!
 
-This is how your traffic is best protected: the correlation attacks we talked about above are no longer practical, since your traffic no longer exits the Tor network via an exit relay. Attacks are of course still possible, as always in cybersecurity: *nothing* is ever 100% unbreakable.
+This is how your traffic is best protected: the correlation attacks we talked about above are no longer practical, since your traffic no longer exits the Tor network via an exit relay. Attacks are of course still possible, as always in cybersecurity: _nothing_ is ever 100% unbreakable.
 
 To connect to onion services, you don't use IP addresses nor domain names (which are really just IP addresses, once DNS translates them), but **`.onion` addresses** instead. These look like this (here, using DuckDuckGo's address):
 
@@ -95,20 +94,22 @@ This offers your users **greater reliability of their Tor connection** (you're m
 
 # Generate a vanity `.onion` address
 
-Before putting these concepts into practice by leveraging the Onionspray Ansible role, we'll first generate what is called a **vanity Tor address**. Vanity, because using one of these is *vain*: your onion service will work just as well with a randomly generated `.onion` address.
+Before putting these concepts into practice by leveraging the Onionspray Ansible role, we'll first generate what is called a **vanity Tor address**. Vanity, because using one of these is _vain_: your onion service will work just as well with a randomly generated `.onion` address.
 
 They're just regular `.onion` addresses, but with a chosen prefix instead of pure randomness. Using them can help users quickly verify that they're connecting to the right website.
 
 We'll use `mkp224o`, which is very fast, though it only uses your CPU to generate `.onion` addresses. In theory for this kind of computations, graphics cards could achieve higher speeds. For a 6-character prefix however, in this case `zougfr`, raw computing power doesn't matter much: any laptop can find one pretty fast. It only took like 30 seconds on mine (and my laptop is not exactly new).
 
-The difficulty, however, greatly increases with a longer prefix. As a former employee of the independent French media outlet [Mediapart](https://www.mediapart.fr/) (*Abonnez-vous !*), I generated their  `.onion` address, and for 9 characters (namely `mediapart`), even with substantial computing power, it took around 24 hours. If you want to know more about Mediapart and Tor, you can [read the blog post](https://blogs.mediapart.fr/mediapart-journal-independant-et-participatif/blog/050924/mediapart-launches-tor) I wrote back then to introduce this new service to the readers ([here in French](https://blogs.mediapart.fr/mediapart-journal-independant-et-participatif/blog/050924/face-au-peril-democratique-mediapart-se-lance-sur-tor)), or [this interview](https://blog.torproject.org/mediapart-launches-onion-service/) on the subject with the Tor Project.
+The difficulty, however, greatly increases with a longer prefix. As a former employee of the independent French media outlet [Mediapart](https://www.mediapart.fr/) (_Abonnez-vous !_), I generated their `.onion` address, and for 9 characters (namely `mediapart`), even with substantial computing power, it took around 24 hours. If you want to know more about Mediapart and Tor, you can [read the blog post](https://blogs.mediapart.fr/mediapart-journal-independant-et-participatif/blog/050924/mediapart-launches-tor) I wrote back then to introduce this new service to the readers ([here in French](https://blogs.mediapart.fr/mediapart-journal-independant-et-participatif/blog/050924/face-au-peril-democratique-mediapart-se-lance-sur-tor)), or [this interview](https://blog.torproject.org/mediapart-launches-onion-service/) on the subject with the Tor Project.
 
 After installing `mkp224o` (e.g. via `snap` with `sudo snap install mkp224o`), to search for a `.onion` address with the `zougfr` prefix:
 
 ```cmd
 mkp224o zougfr
 ```
+
 {% crt() %}
+
 ```
 sorting filters... done.
 filters:
@@ -118,6 +119,7 @@ using 4 threads
 zougfriqn4pmip5tsujpzuj4gp4opwjehkkrksacy6iqsifm25tm6byd.onion
 ^Cwaiting for threads to finish... done.
 ```
+
 {% end %}
 
 Now, at a glance, readers can tell that this is probably the right `.onion` address for `zoug.fr`. However, like discussed earlier, it's easy for anyone to generate another `.onion` address that starts with `zougfr`. A great protection from being phished this way is to also look at **the last characters** of the address. If an attacker tries to generate a `zougfr` hash **which also ends in `m6byd`**, like mine, it becomes **a lot** harder.
@@ -127,12 +129,15 @@ We can take a quick look at the generated files:
 ```cmd
 file zougfr*/*
 ```
+
 {% crt() %}
+
 ```
 zougfr[...]m6byd.onion/hostname:              ASCII text
 zougfr[...]m6byd.onion/hs_ed25519_public_key: data
 zougfr[...]m6byd.onion/hs_ed25519_secret_key: data
 ```
+
 {% end %}
 
 The `hostname` file contains the address, and the corresponding public and secret keys to that hash are saved as binary data. The name of these keys, `ed25519`, tells us more about the exact encryption algorithm used, namely [EdDSA](https://en.wikipedia.org/wiki/EdDSA). Onionspray and the role expect the values as Base64 strings, that you can obtain by doing:
@@ -158,7 +163,9 @@ The role is available on [Ansible Galaxy](https://galaxy.ansible.com/ui/standalo
 ```cmd
 ansible-galaxy role install torproject.onionspray
 ```
+
 {% crt() %}
+
 ```
 Starting galaxy role install process
 - downloading role 'onionspray', owned by torproject
@@ -166,6 +173,7 @@ Starting galaxy role install process
 - extracting torproject.onionspray to /home/user/.ansible/roles/torproject.onionspray
 - torproject.onionspray (3.0.0) was installed successfully
 ```
+
 {% end %}
 
 We'll start by configuring a couple of options for Onionspray, by defining Ansible variables for the host. Keep in mind a lot more is possible through [the role's variables](https://gitlab.torproject.org/tpo/onion-services/ansible/onionspray-role/-/blob/main/defaults/main.yml) and [Onionspray's settings](https://onionservices.torproject.org/apps/web/onionspray/guides/using/). A minimal config that should suit most needs is:
@@ -199,7 +207,9 @@ You'll need to replace the onion address, public and secret keys above with the 
 > ```cmd
 > ansible-vault encrypt_string --vault-pass-file ansible-vault.password
 > ```
+>
 > {% crt() %}
+
 ```
 Reading plaintext input from stdin. (ctrl-d to end input, twice if
 your content does not already have a newline)
@@ -209,6 +219,7 @@ Encryption successful
           $ANSIBLE_VAULT;1.1;AES256
           61613[...]
 ```
+
 > {% end %}
 >
 > You now can define your variable as:
@@ -246,13 +257,16 @@ sudo su onionspray -s /bin/bash
 cd ~/onionspray/
 ./onionspray status -a
 ```
+
 {% crt() %}
+
 ```
 :::: status zougfr ::::
     PID TTY      STAT   TIME COMMAND
 3865884 ?        Sl     5:23 tor -f /home/onionspray/onionspray/projects/zougfr/tor.conf
 3865889 ?        Ss     0:02 nginx: master process nginx -c /home/onionspray/onionspray/projects/zougfr/nginx.conf
 ```
+
 {% end %}
 
 You should now be able to open up Tor Browser, input your `.onion` address, and reach your onion service.
@@ -266,9 +280,11 @@ You should now be able to open up Tor Browser, input your `.onion` address, and 
 Another way is to use the `Onion-Location` HTTP header ([docs](https://community.torproject.org/onion-services/advanced/onion-location/)). When encountering this header, browsers with Tor capabilities can display a message with the corresponding `.onion` address. `Onion-Location` should contain the full URL of the current page visited; for [https://zoug.fr/gallery/](https://zoug.fr/gallery/), the webserver would send the following header:
 
 {% crt() %}
+
 ```
 Onion-Location: https://zougfr[...]m6byd.onion/gallery/
 ```
+
 {% end %}
 
 When receiving this header, Tor Browser will display this button on the address bar:
