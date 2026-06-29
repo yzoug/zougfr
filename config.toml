@@ -27,24 +27,21 @@ author = "Yassine Zouggari"
 default_language = "en"
 
 [markdown]
-highlight_code = true
-highlight_theme = "css"
-highlight_themes_css = [
-	{ theme = "solarized-dark", filename = "syntax-theme-dark.css" },
-	{ theme = "solarized-light", filename = "syntax-theme-light.css" }
-]
 smart_punctuation = true
 bottom_footnotes = true
 github_alerts = true
+
+[markdown.highlighting]
+light_theme = "solarized-light"
+dark_theme = "solarized-dark"
 
 [search]
 index_format = "fuse_json"
 
 #[languages.fr]
 #description = "Blog de Yassine Zouggari ou zoug sur l'informatique et d'autres sujets vaguement liés, en français et en anglais."
-
 #[languages.en]
-description = "Yassine Zouggari or zoug's blog on computer science and loosely related subjects, in French and English."
+#description = "Yassine Zouggari or zoug's blog on computer science and loosely related subjects, in French and English."
 
 [extra]
 # Which theme should be used by default (light/dark).
